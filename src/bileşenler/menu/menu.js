@@ -22,7 +22,7 @@ let menuElemanlari = [
   'menuYapici' fonksiyonu tek argümanı olarak bir menü elemanları dizisini alır (birinci parametre).
 
   Adım 2: Fonksiyonun içinde, dizideki her öğe için bir liste <li> öğesi oluşturarak dizi üzerinde yineleme yapın.
-  Tüm bu öğeleri <ul>'a ekleyin
+  Tüm bu öğeleri <ul>'a ekleyin,
 
   Adım 3: Hala fonksiyon içindeyiz, DOM'dan menü düğmesini seçin (`index.html` içinde `menu-button` sınıfına (class) sahip öğe).
 
@@ -34,3 +34,36 @@ let menuElemanlari = [
 
   Adım 6: 'menuYapici' fonksiyonunu ve 'menuElemanlari' dizisini kullanarak menüyü oluşturun, ve döndürülen menüyü header'e ekleyin.
 */
+
+
+
+function menuYapici(menuElemanlari){
+
+  const menu = document.createElement("div")
+  menu.setAttribute("class","menu")
+
+  const ul = document.createElement("ul")
+
+  for(let i = 0; i<menuElemanlari.length; i++){
+    const li = document.createElement("li")
+    li.textContent = menuElemanlari[i]
+    ul.append(li)
+  }
+  menu.append(ul)
+
+
+  const menubutton = document.querySelector(".menu-button")
+
+  menubutton.addEventListener("click",(e)=>{
+    menu.classList.toggle("menu--open")
+  })
+
+  return menu;
+
+}
+
+const menuOlustur = menuYapici(menuElemanlari)
+
+const header = document.querySelector(".header")
+
+header.append(menuOlustur)
