@@ -115,3 +115,60 @@ const data = [
   Adım 5: Veri dizisine yeni haber nesnesi eklemeyi deneyin. Diğer verilerle aynı yapıda olmasına dikkat edin.
   Eklediğiniz yeni haberi görmek için sayfayı yenileyin.
 */
+
+
+
+const haberYapici = (haberBaşlık,tarih,paragraf1,paragraf2,paragraf3) => {
+
+const firstDiv = document.createElement("div")
+firstDiv.setAttribute("class","article")
+
+const firstH2 = document.createElement("h2")
+firstH2.textContent = haberBaşlık
+
+const firstP = document.createElement("p")
+firstP.setAttribute("class","tarih")
+firstP.textContent = tarih
+
+const secondP = document.createElement("p")
+const thirdP = document.createElement("p")
+const fourthP = document.createElement("p")
+
+secondP.textContent = paragraf1
+thirdP.textContent = paragraf2
+fourthP.textContent = paragraf3
+
+const button = document.createElement("button")
+
+button.setAttribute("class","expandButton")
+
+button.textContent = "+"
+
+button.addEventListener("click",(e)=>{
+  firstDiv.classList.toggle("article-open")
+})
+
+
+firstDiv.append(firstH2)
+firstDiv.append(firstP)
+firstDiv.append(secondP)
+firstDiv.append(thirdP)
+firstDiv.append(fourthP)
+firstDiv.append(button)
+
+return firstDiv;
+
+}
+
+
+const haberler = data.map((i)=>{
+  return haberYapici(i.baslik,i.tarih,i.ilkParagraf,i.ikinciParagraf,i.ucuncuParagraf)
+})
+
+
+const article = document.querySelector(".articles")
+
+haberler.forEach((haber)=>{
+  article.append(haber)
+})
+
